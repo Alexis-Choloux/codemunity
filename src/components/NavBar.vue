@@ -1,15 +1,36 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/">Posts</router-link> |
-    <span v-if="isLoggedIn">
-      <a @click="logout">Logout</a>
-    </span>
-    <span v-else>
-      <router-link to="/register">Register</router-link> |
-      <router-link to="/login">Login</router-link>
-    </span>
-  </div>
+  <nav class="navbar navbar-expand-lg navbar-info bg-info">
+    <a class="navbar-brand ms-5 me-5"><img src="../assets/logo-codemunity.png" alt="codemunity-logo" height="50px"></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <div>
+          <router-link to="/" class="routerLinkNav">Accueil</router-link>
+        </div>
+
+        <div v-if="isLoggedIn">
+          <a @click="logout" class="routerLinkNav">Déconnexion</a>
+        </div>
+        <div v-else>
+          <router-link to="/login" class="routerLinkNav">Connexion</router-link>
+          <router-link to="/register" class="routerLinkNav"
+            >Inscription</router-link
+          >
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 <script>
 export default {
@@ -29,20 +50,13 @@ export default {
 </script>
 
 <style>
-#nav {
-  padding: 30px;
-}
-
-#nav a {
+.routerLinkNav {
+  text-decoration: none;
+  margin: 10px 15px 0 15px;
+  color: rgb(92, 91, 91);
+  font-size: 15px;
   font-weight: bold;
-  color: #2c3e50;
-}
-
-a:hover {
-  cursor: pointer;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+}.routerLinkNav:hover {
+  color: white;
 }
 </style>
