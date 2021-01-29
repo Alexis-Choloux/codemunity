@@ -1,10 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import store from "../store";
-import Home from "../views/Home.vue";
-import Register from "../views/Register";
-import Login from "../views/Login";
-import Posts from "../views/Posts";
+import store from "@/store";
+import Register from "@/views/Register";
+import Login from "@/views/Login";
+import Message from "@/views/Message.vue";
+import EditMessage from "@/views/EditMessage.vue";
+import App from "@/App.vue";
 
 Vue.use(VueRouter);
 
@@ -12,7 +13,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: App,
   },
   {
     path: "/register",
@@ -27,10 +28,14 @@ const routes = [
     meta: { guest: true },
   },
   {
-    path: "/posts",
-    name: "Posts",
-    component: Posts,
-    meta: { requiresAuth: true },
+    path: "/message/:id",
+    name: "Message",
+    component: Message,
+  },
+  {
+    path: "/editmessage/:id",
+    name: "EditMessage",
+    component: EditMessage,
   },
 ];
 
@@ -55,7 +60,7 @@ router.beforeEach((to, from, next) => {
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.guest)) {
     if (store.getters.isAuthenticated) {
-      next("/posts");
+      next("/");
       return;
     }
     next();

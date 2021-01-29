@@ -40,7 +40,7 @@ export default {
       User.append("password", this.form.password);
       try {
           await this.LogIn(User);
-          this.$router.push("/posts");
+          this.$router.push("/");
           this.showError = false
       } catch (error) {
         this.showError = true

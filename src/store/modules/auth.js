@@ -26,7 +26,7 @@ const actions = {
   },
 
   async CreatePost({ dispatch }, post) {
-    await axios.post("post", post);
+    await axios.post("/", post);
     return await dispatch("GetPosts");
   },
 
