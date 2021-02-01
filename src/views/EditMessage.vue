@@ -136,7 +136,7 @@ export default {
     getMessage() {
       axios
         .get(
-          "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" +
+          "https://crudcrud.com/api/d05e49c9121845f4a41190c4d81bb942/message/" +
             this.id
         )
         .then((response) => {
@@ -198,7 +198,7 @@ export default {
       };
       axios
         .put(
-          "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" +
+          "https://crudcrud.com/api/d05e49c9121845f4a41190c4d81bb942/message/" +
             this.$route.params.id,
           message
         )

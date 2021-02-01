@@ -17,7 +17,7 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"><img src="../assets/burger-menu.png" id="burgerMenu"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -51,8 +51,6 @@ export default {
     },
     ...mapGetters({
       User: "StateUser",
-      City: "StateCity",
-      Country: "StateCountry",
     }),
   },
   methods: {
@@ -80,8 +78,21 @@ export default {
   color: #2d415c;
   transition: 0.3s;
 }
+@media screen and (max-width: 768px) {
+  .routerLinkNav {
+    margin: 0 20px 0 0;
+  }
+}
 
 .user {
   color: rgb(185, 185, 185);
+}
+
+.navbar-toggler {
+  margin-right: 20px;
+}
+
+#burgerMenu {
+  height: 37px;
 }
 </style>

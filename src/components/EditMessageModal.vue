@@ -47,7 +47,7 @@
         </p>
 
             <div class="row mb-2">
-              <div class="col-4">
+              <div class="col-sm-4">
 
               <fieldset disabled>
                 <input
@@ -60,8 +60,7 @@
               </fieldset>
               </div>
 
-              <div class="col-4">
-              <fieldset disabled>
+              <div class="col-sm-4">
                 <input
                   id="cityInput"
                   v-model="city"
@@ -69,10 +68,9 @@
                   name="cityInput"
                   class="form-control"
                 />
-              </fieldset>
               </div>
 
-              <div class="col-4">
+              <div class="col-sm-4">
             <input
               id="countryInput"
               v-model="country"
@@ -92,7 +90,7 @@
 
 
             <div class="row">
-              <div class="col-6">
+              <div class="col-sm-6">
                 <input
                   id="tagsInput"
                   v-model="tags"
@@ -102,7 +100,7 @@
                 > 
               </div>
 
-              <div class="col-6" v-if="picture">
+              <div class="col-sm-6" v-if="picture">
                 <input
                   id="picInput"
                   v-model="picture"
@@ -182,8 +180,6 @@ export default {
     computed: {
     ...mapGetters({
       User: "StateUser",
-      City: "StateCity",
-      Country: "StateCountry",
     }),
   },
     methods: {
@@ -229,7 +225,7 @@ export default {
         };
         axios
           .put(
-            "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" + this.message._id,
+            "https://crudcrud.com/api/d05e49c9121845f4a41190c4d81bb942/message/" + this.message._id,
             message
           )
           .then(() => {
@@ -242,7 +238,7 @@ export default {
       deletePost() {
           axios
           .delete(
-            "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" + this.message._id
+            "https://crudcrud.com/api/d05e49c9121845f4a41190c4d81bb942/message/" + this.message._id
           )
           .then(() => {
             location.reload();

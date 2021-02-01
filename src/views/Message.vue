@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div class="row text-start">
-      <router-link :to="{ path: '/' }" class="routerLink">
+    <div class="row text-start mb-4">
+      <router-link :to="'/'" class="routerLink">
         <button class="btn btn-outline-primary rounded-pill return">
           <i class="fas fa-hiking fa-flip-horizontal"></i>Retour
         </button>
@@ -85,18 +85,24 @@
                     </div>
                   </div>
                 </div>
-                <p>{{ message.city }} {{ message.country }}</p>
-              </div>
-              <div class="col-3">
-                <img :src="message.picture" height="85" class="rounded" />
+                <p>{{ message.city }}, {{ message.country }}</p>
               </div>
             </div>
           </div>
           <div class="card-body">
             <div class="row text-start">
-              <p>{{ message.subject }} {{ message.date }}</p>
-              <p>{{ message.content }}</p>
-              <p>{{ message.tags }}</p>
+
+              <div class="col-md-6 d-flex flex-column justify-content-between">
+                <p><span id="title">{{ message.subject }}</span> <span class="text-muted ms-3">{{ message.date }}</span></p>
+                <p>{{ message.content }}</p>
+                <div>
+                <p class="tags">{{ message.tags }}</p>
+                </div>
+              </div>
+
+              <div class="col-md-5 offset-md-1">
+                <img :src="message.picture" height="200" class="rounded messageImg" />
+              </div>
             </div>
           </div>
         </div>
@@ -127,7 +133,7 @@ export default {
     getMessage() {
       axios
         .get(
-          "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" +
+          "https://crudcrud.com/api/d05e49c9121845f4a41190c4d81bb942/message/" +
             this.id
         )
         .then((response) => {
@@ -140,7 +146,7 @@ export default {
     deletePost() {
       axios
         .delete(
-          "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" +
+          "https://crudcrud.com/api/d05e49c9121845f4a41190c4d81bb942/message/" +
             this.message._id
         )
         .then(() => {
@@ -174,4 +180,19 @@ export default {
   color: rgb(177, 31, 31);
   transition: 0.5s;
 }
+
+#title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.tags {
+  color: #784421;
+  font-style: italic;
+}
+
+  .messageImg {
+    width: 100%;
+    height: auto;
+  }
 </style>

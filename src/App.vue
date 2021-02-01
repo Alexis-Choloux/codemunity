@@ -5,7 +5,7 @@
     <div class="container mt-5">
       <div v-if="$route.path == '/'">
         <div class="row">
-          <div v-if="isLoggedIn" class="col-md-3 text-center">
+          <div v-if="isLoggedIn" class="col-md-3 text-center mb-4">
             <Form />
           </div>
           <div v-else>
@@ -54,7 +54,7 @@ export default {
     getMessages() {
       axios
         .get(
-          "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message"
+          "https://crudcrud.com/api/d05e49c9121845f4a41190c4d81bb942/message"
         )
         .then((response) => {
           this.messages = response.data;
@@ -130,5 +130,13 @@ export default {
 .return i {
   margin-right: 20px;
   font-size: 30px;
+}
+
+@media screen and (max-width: 575px) {
+  .modal-content {
+    width: 100vw;
+    margin: 0 0 5% -22%;
+    padding: 0;
+  }
 }
 </style>

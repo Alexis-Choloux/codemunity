@@ -38,7 +38,7 @@
   </p>
 
 <div class="row mb-2">
-  <div class="col-4">
+  <div class="col-sm-4">
       <fieldset disabled>
     <input
       id="nameInput"
@@ -51,7 +51,7 @@
       </fieldset>
   </div>
 
-  <div class="col-4">
+  <div class="col-sm-4">
     <input
       id="cityInput"
       v-model="cityInput"
@@ -62,7 +62,7 @@
     >
   </div>
 
-  <div class="col-4">
+  <div class="col-sm-4">
     <input
       id="countryInput"
       v-model="countryInput"
@@ -83,7 +83,7 @@
     ></textarea>
 
   <div class="row">
-  <div class="col-6">
+  <div class="col-sm-6">
     <input
       id="tagsInput"
       v-model="tagsInput"
@@ -94,7 +94,7 @@
     > 
   </div>
 
-  <div class="col-6">
+  <div class="col-sm-6">
     <input
       id="picInput"
       v-model="picInput"
@@ -175,6 +175,7 @@ export default {
         this.errors.push("Message requis.");
       }
     },
+    
 
     sendPost() {
       let message = {
@@ -189,7 +190,7 @@ export default {
       };
       axios
         .post(
-          "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message",
+          "https://crudcrud.com/api/d05e49c9121845f4a41190c4d81bb942/message",
           message
         )
         .then(() => {

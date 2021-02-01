@@ -25,26 +25,6 @@
             </div>
 
             <div>
-              <label for="city" class="form-label">Ville :</label>
-              <input
-                type="text"
-                class="form-control"
-                name="city"
-                v-model="form.city"
-              />
-            </div>
-
-            <div>
-              <label for="country" class="form-label">Pays :</label>
-              <input
-                type="text"
-                class="form-control"
-                name="country"
-                v-model="form.country"
-              />
-            </div>
-
-            <div>
               <label for="password" class="form-label">Mot de passe :</label>
               <input
                 type="password"
@@ -75,8 +55,6 @@ export default {
       form: {
         username: "",
         full_name: "",
-        city: "",
-        country: "",
         password: "",
       },
       showError: false,
