@@ -2,14 +2,14 @@
   <div class="container">
     <div class="row text-start">
       <router-link :to="{ path: '/' }" class="routerLink">
-        <button class="btn btn-outline-info rounded-pill return">
+        <button class="btn btn-outline-primary rounded-pill return">
           <i class="fas fa-hiking fa-flip-horizontal"></i>Retour
         </button>
       </router-link>
     </div>
 
     <div class="row">
-      <div class="col-md-9 offset-md-3">
+      <div class="col-md-10 offset-md-2">
         <div class="card text-dark bg-light mb-3">
           <div class="card-header text-start">
             <div class="row">
@@ -18,22 +18,26 @@
                   <h2>
                     {{ message.name }}
                   </h2>
-                  <router-link
-                    :to="{ path: '/editmessage/' + message._id }"
-                    class="routerLink"
-                  >
-                    <i class="fas fa-pen fa-2x"></i>
-                  </router-link>
-
-                  <div>
-                    <button
-                      type="button"
-                      class="btn btn-light btn-sm"
-                      data-bs-toggle="modal"
-                      :data-bs-target="'#deleteModal' + message._id"
+                  <div v-if="User == message.name" class="d-flex">
+                    <router-link
+                      :to="{ path: '/editmessage/' + message._id }"
+                      class="routerLink ms-3"
                     >
-                      <i class="fas fa-trash fa-2x"></i>
-                    </button>
+                      <button type="button" class="btn btn-sm">
+                        <i class="fas fa-pen fa-2x"></i>
+                      </button>
+                    </router-link>
+
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-sm"
+                        data-bs-toggle="modal"
+                        :data-bs-target="'#deleteModal' + message._id"
+                      >
+                        <i class="fas fa-trash fa-2x"></i>
+                      </button>
+                    </div>
 
                     <!-- Modal -->
                     <div
@@ -103,6 +107,7 @@
 
 <script>
 import axios from "axios";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Message",
@@ -113,11 +118,16 @@ export default {
       message: [],
     };
   },
+  computed: {
+    ...mapGetters({
+      User: "StateUser",
+    }),
+  },
   methods: {
     getMessage() {
       axios
         .get(
-          "https://crudcrud.com/api/4143cd4d6ef14f8085d339535146d35b/message/" +
+          "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" +
             this.id
         )
         .then((response) => {
@@ -130,7 +140,7 @@ export default {
     deletePost() {
       axios
         .delete(
-          "https://crudcrud.com/api/4143cd4d6ef14f8085d339535146d35b/message/" +
+          "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" +
             this.message._id
         )
         .then(() => {
@@ -147,4 +157,21 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.fa-pen {
+  color: #506c93;
+  transition: 0.5s;
+}
+.fa-pen:hover {
+  color: #683716;
+  transition: 0.5s;
+}
+.fa-trash {
+  color: #506c93;
+  transition: 0.5s;
+}
+.fa-trash:hover {
+  color: rgb(177, 31, 31);
+  transition: 0.5s;
+}
+</style>

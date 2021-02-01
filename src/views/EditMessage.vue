@@ -2,7 +2,7 @@
 <div>
   <div class="row text-start">
     <router-link :to="{ path: '/message/' + this.$route.params.id }" class="routerLink">
-      <button class="btn btn-outline-info rounded-pill return">
+      <button class="btn btn-outline-primary rounded-pill return">
         <i class="fas fa-hiking fa-flip-horizontal"></i>Retour
       </button>
     </router-link>
@@ -125,7 +125,7 @@ export default {
     getMessage() {
       axios
         .get(
-          "https://crudcrud.com/api/4143cd4d6ef14f8085d339535146d35b/message/" +
+          "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" +
             this.id
         )
         .then((response) => {
@@ -187,7 +187,7 @@ export default {
       };
       axios
         .put(
-          "https://crudcrud.com/api/4143cd4d6ef14f8085d339535146d35b/message/" +
+          "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" +
             this.$route.params.id,
           message
         )

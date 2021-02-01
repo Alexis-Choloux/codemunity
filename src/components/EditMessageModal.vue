@@ -222,7 +222,7 @@ export default {
         };
         axios
           .put(
-            "https://crudcrud.com/api/4143cd4d6ef14f8085d339535146d35b/message/" + this.message._id,
+            "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" + this.message._id,
             message
           )
           .then(() => {
@@ -235,7 +235,7 @@ export default {
       deletePost() {
           axios
           .delete(
-            "https://crudcrud.com/api/4143cd4d6ef14f8085d339535146d35b/message/" + this.message._id
+            "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message/" + this.message._id
           )
           .then(() => {
             location.reload();
@@ -253,5 +253,18 @@ export default {
 </script>
 
 <style scoped>
-
+.fa-pen {
+  color: #506c93;
+  transition: 0.5s;
+}.fa-pen:hover {
+  color: #683716;
+  transition: 0.5s;
+}
+.fa-trash {
+  color: #506c93;
+  transition: 0.5s;
+} .fa-trash:hover {
+  color: rgb(177, 31, 31);
+  transition: 0.5s;
+}
 </style>

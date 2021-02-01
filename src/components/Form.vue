@@ -2,7 +2,7 @@
 <div>
   <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Nouveau POST
+  Publier un nouveau POST
 </button>
 
 <!-- Modal -->
@@ -186,7 +186,7 @@ export default {
       };
       axios
         .post(
-          "https://crudcrud.com/api/4143cd4d6ef14f8085d339535146d35b/message",
+          "https://crudcrud.com/api/1f2570c1545a439b97cfe9ece1a09710/message",
           message
         )
         .then(() => {
