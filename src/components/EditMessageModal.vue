@@ -49,23 +49,27 @@
             <div class="row mb-2">
               <div class="col-4">
 
-              <input
-                id="nameInput"
-                v-model="name"
-                type="text"
-                name="nameInput"
-                class="form-control"
-              />
+              <fieldset disabled>
+                <input
+                  id="nameInput"
+                  v-model="User"
+                  type="text"
+                  name="nameInput"
+                  class="form-control"
+                />
+              </fieldset>
               </div>
 
               <div class="col-4">
-            <input
-              id="cityInput"
-              v-model="city"
-              type="text"
-              name="cityInput"
-              class="form-control"
-            />
+              <fieldset disabled>
+                <input
+                  id="cityInput"
+                  v-model="city"
+                  type="text"
+                  name="cityInput"
+                  class="form-control"
+                />
+              </fieldset>
               </div>
 
               <div class="col-4">
@@ -159,6 +163,7 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+import { mapGetters } from "vuex";
 
 export default {
   name: "EditMessageModal",
@@ -166,7 +171,6 @@ export default {
   data() {
     return {
       errors: [],
-      name: this.message.name,
       city: this.message.city,
       country: this.message.country,
       subject: this.message.subject,
@@ -175,13 +179,19 @@ export default {
       picture: this.message.picture,
     };
   },
+    computed: {
+    ...mapGetters({
+      User: "StateUser",
+      City: "StateCity",
+      Country: "StateCountry",
+    }),
+  },
     methods: {
 
       checkForm: function (e) {
         e.preventDefault();
 
         if (
-          this.name &&
           this.city &&
           this.country &&
           this.subject &&
@@ -193,9 +203,6 @@ export default {
 
         this.errors = [];
 
-        if (!this.name) {
-          this.errors.push("Pseudo requis.");
-        }
         if (!this.city) {
           this.errors.push("Ville requis.");
         }
@@ -211,7 +218,7 @@ export default {
       },
       updatePost() {
         let message = {
-          name: this.name,
+          name: this.User,
           city: this.city,
           country: this.country,
           subject: this.subject,

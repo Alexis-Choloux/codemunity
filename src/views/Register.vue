@@ -1,23 +1,66 @@
 <template>
-  <div class="register">
-    <div>
-      <form @submit.prevent="submit">
+  <div class="row">
+    <div class="col-md-3 offset-md-4 text-center mt-1">
+      <div class="register">
         <div>
-          <label for="username">Username:</label>
-          <input type="text" name="username" v-model="form.username" />
+          <form @submit.prevent="submit">
+            <div>
+              <label for="username" class="form-label">Pseudo :</label>
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                v-model="form.username"
+              />
+            </div>
+
+            <div>
+              <label for="full_name" class="form-label">Nom complet :</label>
+              <input
+                type="text"
+                class="form-control"
+                name="full_name"
+                v-model="form.full_name"
+              />
+            </div>
+
+            <div>
+              <label for="city" class="form-label">Ville :</label>
+              <input
+                type="text"
+                class="form-control"
+                name="city"
+                v-model="form.city"
+              />
+            </div>
+
+            <div>
+              <label for="country" class="form-label">Pays :</label>
+              <input
+                type="text"
+                class="form-control"
+                name="country"
+                v-model="form.country"
+              />
+            </div>
+
+            <div>
+              <label for="password" class="form-label">Mot de passe :</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                v-model="form.password"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">
+              Inscription
+            </button>
+          </form>
         </div>
-        <div>
-          <label for="full_name">Full Name:</label>
-          <input type="text" name="full_name" v-model="form.full_name" />
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input type="password" name="password" v-model="form.password" />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+        <p v-if="showError" id="error">Username already exists</p>
+      </div>
     </div>
-    <p v-if="showError" id="error">Username already exists</p>
   </div>
 </template>
 
@@ -32,9 +75,11 @@ export default {
       form: {
         username: "",
         full_name: "",
+        city: "",
+        country: "",
         password: "",
       },
-      showError: false
+      showError: false,
     };
   },
   methods: {
@@ -43,9 +88,9 @@ export default {
       try {
         await this.Register(this.form);
         this.$router.push("/");
-        this.showError = false
+        this.showError = false;
       } catch (error) {
-        this.showError = true
+        this.showError = true;
       }
     },
   },
@@ -61,24 +106,6 @@ label {
   display: inline-block;
 }
 
-button[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-  padding: 12px 20px;
-  cursor: pointer;
-  border-radius: 30px;
-}
-
-button[type="submit"]:hover {
-  background-color: #45a049;
-}
-
-input {
-  margin: 5px;
-  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
-  padding: 10px;
-  border-radius: 30px;
-}
 #error {
   color: red;
 }

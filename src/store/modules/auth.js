@@ -9,6 +9,8 @@ const getters = {
   isAuthenticated: (state) => !!state.user,
   StatePosts: (state) => state.posts,
   StateUser: (state) => state.user,
+  StateCity: (state) => state.city,
+  StateCountry: (state) => state.country,
 };
 
 const actions = {
@@ -16,6 +18,8 @@ const actions = {
     await axios.post('register', form)
     let UserForm = new FormData()
     UserForm.append('username', form.username)
+    UserForm.append('password', form.city)
+    UserForm.append('password', form.country)
     UserForm.append('password', form.password)
     await dispatch('LogIn', UserForm)
   },
@@ -35,6 +39,11 @@ const actions = {
     commit("setPosts", response.data);
   },
 
+  async GetProfile({ commit }) {
+    let response = await axios.get("city");
+    commit("setCity", response.data);
+  },
+
   async LogOut({ commit }) {
     let user = null;
     commit("logout", user);
@@ -44,6 +53,14 @@ const actions = {
 const mutations = {
   setUser(state, username) {
     state.user = username;
+  },
+
+  setCity(state, city) {
+    state.city = city;
+  },
+
+  setCountry(state, country) {
+    state.country = country;
   },
 
   setPosts(state, posts) {

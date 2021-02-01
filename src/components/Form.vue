@@ -39,14 +39,16 @@
 
 <div class="row mb-2">
   <div class="col-4">
+      <fieldset disabled>
     <input
       id="nameInput"
-      v-model="nameInput"
+      v-model="User"
       type="text"
       name="nameInput"
       class="form-control"
       placeholder="Pseudo"
     >
+      </fieldset>
   </div>
 
   <div class="col-4">
@@ -124,13 +126,13 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Form",
   data() {
     return {
       errors: [],
-      nameInput: null,
       cityInput: null,
       countryInput: null,
       subjectInput: null,
@@ -139,12 +141,16 @@ export default {
       picInput: null,
     };
   },
+  computed: {
+    ...mapGetters({
+      User: "StateUser",
+    }),
+  },
   methods: {
     checkForm: function (e) {
       e.preventDefault();
 
       if (
-        this.nameInput &&
         this.cityInput &&
         this.countryInput &&
         this.subjectInput &&
@@ -156,9 +162,6 @@ export default {
 
       this.errors = [];
 
-      if (!this.nameInput) {
-        this.errors.push("Pseudo requis.");
-      }
       if (!this.cityInput) {
         this.errors.push("Ville requis.");
       }
@@ -175,7 +178,7 @@ export default {
 
     sendPost() {
       let message = {
-        name: this.nameInput,
+        name: this.User,
         city: this.cityInput,
         country: this.countryInput,
         subject: this.subjectInput,

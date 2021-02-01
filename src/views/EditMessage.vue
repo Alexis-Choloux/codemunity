@@ -1,110 +1,116 @@
 <template>
-<div>
-  <div class="row text-start">
-    <router-link :to="{ path: '/message/' + this.$route.params.id }" class="routerLink">
-      <button class="btn btn-outline-primary rounded-pill return">
-        <i class="fas fa-hiking fa-flip-horizontal"></i>Retour
-      </button>
-    </router-link>
-  </div>
+  <div>
+    <div class="row text-start">
+      <router-link
+        :to="{ path: '/message/' + this.$route.params.id }"
+        class="routerLink"
+      >
+        <button class="btn btn-outline-primary rounded-pill return">
+          <i class="fas fa-hiking fa-flip-horizontal"></i>Retour
+        </button>
+      </router-link>
+    </div>
 
-  <div class="row mt-5">
-    <form id="form" @submit="checkForm" method="post">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col-4">
+    <div class="row mt-5">
+      <form id="form" @submit="checkForm" method="post">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-4">
+                <fieldset disabled>
+                  <input
+                    id="subjectInput"
+                    v-model="User"
+                    type="text"
+                    name="subjectInput"
+                    class="form-control"
+                  />
+                </fieldset>
+              </div>
+              <div class="col-4">
+                <input
+                  id="cityInput"
+                  v-model="city"
+                  type="text"
+                  name="cityInput"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-4">
+                <input
+                  id="countryInput"
+                  v-model="country"
+                  type="text"
+                  name="countryInput"
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">
               <input
                 id="subjectInput"
-                v-model="name"
+                v-model="subject"
                 type="text"
                 name="subjectInput"
                 class="form-control"
               />
-            </div>
-            <div class="col-4">
-              <input
-                id="cityInput"
-                v-model="city"
-                type="text"
-                name="cityInput"
+              <textarea
+                id="messageInput"
+                v-model="content"
+                name="messageInput"
                 class="form-control"
-              />
-            </div>
-            <div class="col-4">
-              <input
-                id="countryInput"
-                v-model="country"
-                type="text"
-                name="countryInput"
-                class="form-control"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-title">
-            <input
-              id="subjectInput"
-              v-model="subject"
-              type="text"
-              name="subjectInput"
-              class="form-control"
-            />
-            <textarea
-              id="messageInput"
-              v-model="content"
-              name="messageInput"
-              class="form-control"
-            ></textarea>
-            <div class="row">
-              <div class="col-6">
-                <input
-                  id="tagsInput"
-                  v-model="tags"
-                  type="text"
-                  name="tagsInput"
-                  class="form-control"
-                > 
-              </div>
+              ></textarea>
+              <div class="row">
+                <div class="col-6">
+                  <input
+                    id="tagsInput"
+                    v-model="tags"
+                    type="text"
+                    name="tagsInput"
+                    class="form-control"
+                  />
+                </div>
 
-              <div class="col-6" v-if="picture">
-                <input
-                  id="picInput"
-                  v-model="picture"
-                  type="text"
-                  name="picInput"
-                  class="form-control"
-                > 
-              </div>
-              <div class="col-6" v-else>
-                <input
-                  id="picInput"
-                  v-model="picture"
-                  type="text"
-                  name="picInput"
-                  class="form-control"
-                  placeholder="Collez, ici, l'url de votre photo"
-                > 
+                <div class="col-6" v-if="picture">
+                  <input
+                    id="picInput"
+                    v-model="picture"
+                    type="text"
+                    name="picInput"
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-6" v-else>
+                  <input
+                    id="picInput"
+                    v-model="picture"
+                    type="text"
+                    name="picInput"
+                    class="form-control"
+                    placeholder="Collez, ici, l'url de votre photo"
+                  />
+                </div>
               </div>
             </div>
+            <div class="card-text"></div>
+            <input
+              type="submit"
+              value="Modifier"
+              class="btn btn-primary btn-lg"
+            />
           </div>
-          <div class="card-text"></div>
-          <input
-            type="submit"
-            value="Modifier"
-            class="btn btn-primary btn-lg"
-          />
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
 import axios from "axios";
 import moment from "moment";
+import { mapGetters } from "vuex";
 
 export default {
   name: "EditMessage",
@@ -120,6 +126,11 @@ export default {
       content: null,
       picture: null,
     };
+  },
+  computed: {
+    ...mapGetters({
+      User: "StateUser",
+    }),
   },
   methods: {
     getMessage() {

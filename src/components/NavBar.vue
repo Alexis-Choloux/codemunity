@@ -6,7 +6,7 @@
         alt="codemunity-logo"
         height="70px"
     /></a>
-    <p class="user">{{ User }}</p>
+    <p class="user">{{ User }} {{ City }}</p>
 
     <button
       class="navbar-toggler"
@@ -51,6 +51,8 @@ export default {
     },
     ...mapGetters({
       User: "StateUser",
+      City: "StateCity",
+      Country: "StateCountry",
     }),
   },
   methods: {
